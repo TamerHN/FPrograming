@@ -1,8 +1,8 @@
 open System
-let str = "1,5,6,8,9" 
-let splitBy = ","
-let split (splitBy:string) (str:string)  = 
-    str.Split([|splitBy|], StringSplitOptions.RemoveEmptyEntries)
+let str = "1,5\n6,8,9" 
+let splitBy = [|","; "\n"|]
+let split (splitBy:string[]) (str:string)  = 
+    str.Split(splitBy, StringSplitOptions.RemoveEmptyEntries)
 
 //get the first two numbers only
 let sliceArr (start:int) (length:int) (arr:string[]) =
