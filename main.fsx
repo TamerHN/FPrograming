@@ -1,5 +1,5 @@
 open System
-let str = "" 
+let str = "1,5,6,8,9" 
 let splitBy = ","
 let split (splitBy:string) (str:string)  = 
     str.Split([|splitBy|], StringSplitOptions.RemoveEmptyEntries)
@@ -15,7 +15,6 @@ let sliceArr (start:int) (length:int) (arr:string[]) =
 let add str =
     str
     |> split splitBy 
-    |> sliceArr 0 2
     |> Array.map int
     |> Array.sum
 
