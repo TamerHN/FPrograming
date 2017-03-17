@@ -3,7 +3,7 @@ open System.Collections.Generic
 
 exception NegativityError of string
 //the entered string
-let orginalStr =  "//;\n9;-11;-8"
+let orginalStr =  "//;\n9;11;8;1000"
 //split the given string to the data an the delimerter
 let splitString (str:string) =
     str.Split('\n')
@@ -46,6 +46,7 @@ let add orginalStr =
         sum <- str
                 |> split splitBy 
                 |> Array.map int
+                |> Array.filter (fun x -> x < 1000)
                 |> checkNegativity
                 |> Array.sum
     with 
