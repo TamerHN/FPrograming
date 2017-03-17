@@ -3,7 +3,7 @@ open System.Collections.Generic
 
 exception NegativityError of string
 //the entered string
-let orginalStr =  "//;\n9;11;8;1000"
+let orginalStr =  "//***\n9***11***8***1000"
 //split the given string to the data an the delimerter
 let splitString (str:string) =
     str.Split('\n')
