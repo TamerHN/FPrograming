@@ -3,17 +3,21 @@ open System.Collections.Generic
 
 exception NegativityError of string
 //the entered string
-let orginalStr =  "//[**][%x]\n1**2%x3**2"
+let orginalStr =  "//[@]\n2@3,8\n5\n7,25\n50@100@800\n1000"
+
 //split the given string to the data an the delimerter
 let splitString (str:string) =
-    str.Split('\n')
+    if str.Contains("//") then
+        str.Split([|"\n"|],2, StringSplitOptions.RemoveEmptyEntries)
+    else
+        [|str|]
 //get the splitter, or ',' by default
 let getSplitter (str:string []) = 
     if str.Length <> 1 then
         let splitter = str.[0].Split([|"//"|], StringSplitOptions.RemoveEmptyEntries).[0]
-        splitter.Split('[', ']') |> Array.filter (fun x -> x <> "") 
+        splitter.Split('[', ']') |> Array.filter (fun x -> x <> "") |> Array.append [|","; "\n"|]
     else 
-        [|","|]
+        [|","; "\n"|]
 //get the data (numbers)
 let getString (str:string []) =
     if str.Length <> 1 then 
