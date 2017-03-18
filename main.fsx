@@ -3,23 +3,23 @@ open System.Collections.Generic
 
 exception NegativityError of string
 //the entered string
-let orginalStr =  "//***\n9***11***8***1000"
+let orginalStr =  "//[*][%]\n1*2%3*1000"
 //split the given string to the data an the delimerter
 let splitString (str:string) =
     str.Split('\n')
 //get the splitter, or ',' by default
 let getSplitter (str:string []) = 
     if str.Length <> 1 then
-        str.[0].Split([|"//"|], StringSplitOptions.RemoveEmptyEntries).[0]
+        let splitter = str.[0].Split([|"//"|], StringSplitOptions.RemoveEmptyEntries).[0]
+        splitter.Split('[', ']') |> Array.filter (fun x -> x <> "") 
     else 
-        ","
+        [|","|]
 //get the data (numbers)
 let getString (str:string []) =
     if str.Length <> 1 then 
         str.[1]
     else 
         str.[0]
-
 //get the numbers from the data string
 let split (splitBy:string[]) (str:string)  = 
     str.Split(splitBy, StringSplitOptions.RemoveEmptyEntries)
@@ -40,7 +40,7 @@ let checkNegativity (arr:int []) =
 //the add function
 let add orginalStr =
     let str = orginalStr |> splitString |> getString
-    let splitBy = [|orginalStr |> splitString |> getSplitter|]
+    let splitBy = orginalStr |> splitString |> getSplitter
     let mutable sum = 1
     try
         sum <- str
