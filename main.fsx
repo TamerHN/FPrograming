@@ -3,7 +3,7 @@ open System.Collections.Generic
 
 exception NegativityError of string
 //the entered string
-let orginalStr =  "//[*][%]\n1*2%3*1000"
+let orginalStr =  "//[**][%x]\n1**2%x3**2"
 //split the given string to the data an the delimerter
 let splitString (str:string) =
     str.Split('\n')
